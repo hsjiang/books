@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
 
     val runnable = {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun onDestroy() {
