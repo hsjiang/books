@@ -6,4 +6,10 @@
 
     <color name="transparent">#0000</color>
     <color name="color_white">#FFF</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="color_E84856">#E84856</color>
+    <color name="color_E1E1E1">#E1E1E1</color>
+
+    <color name="text_E84856">#E84856</color>
+    <color name="text_333333">#333333</color>
 </resources>

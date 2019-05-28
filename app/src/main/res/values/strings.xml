@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">升学通</string>
+
+
+    <string name="book_store">书城</string>
+    <string name="book_shelf">书架</string>
+    <string name="all">全部</string>
+    <string name="enrollment_strategy">入学攻略</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

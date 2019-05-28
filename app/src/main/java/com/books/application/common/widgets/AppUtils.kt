@@ -103,7 +103,7 @@ object AppUtils {
         return false
     }
 
-    fun isAppBackground(context: Context): Boolean {
+    fun isAppForeground(context: Context): Boolean {
         val manager = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager?
         val appProcessInfos = manager!!.runningAppProcesses
         if (appProcessInfos == null || appProcessInfos.isEmpty()) {
@@ -111,9 +111,7 @@ object AppUtils {
         }
         for (info in appProcessInfos) {
             if (info.processName == context.packageName &&
-                    (info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_CACHED ||
-                            info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_TOP_SLEEPING_PRE_28 ||
-                            info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_TOP_SLEEPING)) {
+                    info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                 return true
             }
         }
