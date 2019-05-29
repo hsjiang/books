@@ -23,6 +23,7 @@ class MainActivity : BaseActivity() {
         tvBookStore.setOnClickListener { onItemSelected(0) }
         tvBookShelf.setOnClickListener { onItemSelected(1) }
         onItemSelected(0)
+
     }
 
     private fun onItemSelected(item: Int) {

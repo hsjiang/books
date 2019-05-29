@@ -19,7 +19,7 @@
     </style>
 
     <style name="AppProgressBar" parent="Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">@color/color_white</item>
+        <item name="android:indeterminateTint">@color/color_E84856</item>
         <item name="android:indeterminateTintMode">src_atop</item>
     </style>
 
