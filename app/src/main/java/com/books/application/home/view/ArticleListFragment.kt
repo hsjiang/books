@@ -40,12 +40,12 @@ class ArticleListFragment : BaseFragment() {
         mViewModel.initData(arguments)
 
         mViewModel.loading.observe(this, Observer {
-            mLoading.show(it)
+            if (isVisibleToUser)
+                mLoading.show(it)
         })
         mViewModel.articles.observe(this, Observer {
             mAdapter.replaceAll(it)
         })
-        mViewModel.getArticles()
     }
 
     override fun onCreateView(
@@ -60,6 +60,8 @@ class ArticleListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+
+        mViewModel.getArticles()
     }
 
     private fun setupView() {

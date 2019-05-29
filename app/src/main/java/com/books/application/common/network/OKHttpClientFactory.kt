@@ -2,8 +2,7 @@ package com.books.application.common.network
 
 import android.annotation.SuppressLint
 import android.app.Application
-import okhttp3.Cache
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
@@ -14,6 +13,7 @@ object OKHttpClientFactory {
 
     private lateinit var INSTANCE: OkHttpClient
 
+    @JvmStatic
     fun okHttpClient(): OkHttpClient {
         return INSTANCE
     }
@@ -24,6 +24,17 @@ object OKHttpClientFactory {
 
     private fun okHttpClient(application: Application): OkHttpClient {
         val builder = OkHttpClient.Builder()
+        builder.cookieJar(object : CookieJar {
+            private var cookies: List<Cookie>? = null
+
+            override fun loadForRequest(url: HttpUrl): List<Cookie> {
+                return if (cookies != null) cookies!! else ArrayList()
+            }
+
+            override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
+                this.cookies = cookies
+            }
+        })
 
         builder.connectTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
             .writeTimeout((20 * 1000).toLong(), TimeUnit.MILLISECONDS)
@@ -36,6 +47,7 @@ object OKHttpClientFactory {
 //        val version = AppUtils.getVersionName(application)
 //        builder.addNetworkInterceptor(StethoInterceptor())
 //        builder.addInterceptor(PTDataSdkInterceptor(application))
+//        builder.addInterceptor(HeaderInfoInterceptor())
 
         builder.cache(cache(application))
         createSSLSocketFactory()?.let {
@@ -59,7 +71,7 @@ object OKHttpClientFactory {
         try {
             val sc = SSLContext.getInstance("TLS")
             sc.init(null, arrayOf<TrustManager>(TrustAllManager()), SecureRandom())
-            sSLSocketFactory = sc.socketFactory;
+            sSLSocketFactory = sc.socketFactory
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -1,5 +1,6 @@
 package com.books.application.common.network.retrofit
 
+import com.books.application.common.network.OKHttpClientFactory
 import com.books.application.common.network.retrofit.api.BaseApi
 import com.books.application.common.network.retrofit.api.BooksApi
 import com.google.gson.FieldNamingPolicy
@@ -36,14 +37,15 @@ object RetrofitFactory {
     }
 
     private fun createClient(): OkHttpClient {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
-
-        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        val requestInterceptor = RequestInterceptor()
-        okHttpClientBuilder.addInterceptor(requestInterceptor)
-        okHttpClientBuilder.addInterceptor(logging)
-        return okHttpClientBuilder.build()
+//        val logging = HttpLoggingInterceptor()
+//        logging.level = HttpLoggingInterceptor.Level.BODY
+//
+//        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+//        val requestInterceptor = RequestInterceptor()
+//        okHttpClientBuilder.addInterceptor(requestInterceptor)
+//        okHttpClientBuilder.addInterceptor(logging)
+//        return okHttpClientBuilder.build()
+        return OKHttpClientFactory.okHttpClient()
     }
 
     private class RequestInterceptor : Interceptor {

@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMainBinding
 
+    private val bookStoreFragment = BookStoreFragment.newInstance()
+    private val bookShelfFragment = BookShelfFragment.newInstance();
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -22,6 +25,8 @@ class MainActivity : BaseActivity() {
     private fun setupView() {
         tvBookStore.setOnClickListener { onItemSelected(0) }
         tvBookShelf.setOnClickListener { onItemSelected(1) }
+        supportFragmentManager.beginTransaction().add(R.id.flFragmentContainer, bookStoreFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.flFragmentContainer, bookShelfFragment).commit()
         onItemSelected(0)
 
     }
@@ -31,17 +36,30 @@ class MainActivity : BaseActivity() {
             0 -> {
                 tvBookStore.setTextColor(ContextCompat.getColor(this, R.color.text_E84856))
                 tvBookShelf.setTextColor(ContextCompat.getColor(this, R.color.text_333333))
-                switchFragment(BookStoreFragment.newInstance())
+                switchFragment(0)
             }
             1 -> {
                 tvBookStore.setTextColor(ContextCompat.getColor(this, R.color.text_333333))
                 tvBookShelf.setTextColor(ContextCompat.getColor(this, R.color.text_E84856))
-                switchFragment(BookShelfFragment.newInstance())
+                switchFragment(1)
             }
         }
     }
 
-    private fun switchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.flFragmentContainer, fragment, "").commit()
+    private fun switchFragment(position: Int) {
+        when (position) {
+            0 -> {
+                if (!bookShelfFragment.isDetached) {
+                    supportFragmentManager.beginTransaction().hide(bookShelfFragment).commit()
+                }
+                supportFragmentManager.beginTransaction().show(bookStoreFragment).commit()
+            }
+            1 -> {
+                if (!bookStoreFragment.isDetached) {
+                    supportFragmentManager.beginTransaction().hide(bookStoreFragment).commit()
+                }
+                supportFragmentManager.beginTransaction().show(bookShelfFragment).commit()
+            }
+        }
     }
 }
