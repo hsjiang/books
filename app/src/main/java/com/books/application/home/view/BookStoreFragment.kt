@@ -9,18 +9,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
-import androidx.viewpager.widget.ViewPager
 import com.books.application.R
 import com.books.application.base.BaseFragment
 import com.books.application.databinding.FragmentBookStoreBinding
 import com.books.application.home.viewmodel.BookStoreViewModel
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_book_store.*
-import kotlinx.android.synthetic.main.layout_tab_item.*
 
 class BookStoreFragment : BaseFragment() {
     private lateinit var mBinding: FragmentBookStoreBinding

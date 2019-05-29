@@ -8,6 +8,7 @@
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
+                android:background="@color/color_white"
                 android:paddingStart="@dimen/base_12"
                 android:paddingEnd="@dimen/base_12"
                 android:clipToPadding="false"

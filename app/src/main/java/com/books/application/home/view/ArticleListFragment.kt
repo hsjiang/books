@@ -1,15 +1,14 @@
 package com.books.application.home.view
 
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-
 import com.books.application.R
 import com.books.application.base.BaseFragment
 import com.books.application.common.widgets.recyclerview.LayoutManagerFactory
@@ -67,5 +66,13 @@ class ArticleListFragment : BaseFragment() {
         val layoutManager = LayoutManagerFactory.verticalLinearLayoutManager(mContext)
         rvArticle.layoutManager = layoutManager
         rvArticle.adapter = mAdapter
+        mAdapter.setOnItemClickListener { v, position ->
+            val url = mAdapter.getItem(position)?.url
+            val title = mAdapter.getItem(position)?.category
+            startActivity(Intent(mContext, WebViewActivity::class.java).apply {
+                putExtra(BundleKey.KEY_URL, url)
+                putExtra(BundleKey.KEY_TITLE, title)
+            })
+        }
     }
 }

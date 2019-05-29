@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".home.view.WebViewActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/clTop"
+                android:background="@color/color_white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_48">
+
+            <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="@dimen/base_48"
+                    android:layout_height="@dimen/base_48"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/btn_24_back_b_nor"/>
+
+            <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="@dimen/text16"
+                    android:textColor="@color/text_333333"/>
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="@dimen/base_1"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:background="@color/color_E1E1E1"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.books.application.common.widgets.BaseWebView
+                android:id="@+id/webView"
+                app:layout_constraintTop_toBottomOf="@id/clTop"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

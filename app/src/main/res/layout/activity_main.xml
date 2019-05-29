@@ -24,11 +24,19 @@
                 android:background="@color/color_white"
                 app:layout_constraintBottom_toBottomOf="parent">
 
+            <View app:layout_constraintTop_toTopOf="parent"
+                  android:id="@+id/divider"
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/base_1"
+                  android:background="@color/color_E1E1E1"/>
+
             <TextView
                     android:id="@+id/tvBookStore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/book_store"
+                    android:paddingStart="@dimen/base_16"
+                    android:paddingEnd="@dimen/base_16"
                     android:text="@string/book_store"
                     android:textSize="@dimen/text12"
                     app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/book_store"
+                    android:paddingStart="@dimen/base_16"
+                    android:paddingEnd="@dimen/base_16"
                     android:text="@string/book_shelf"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
